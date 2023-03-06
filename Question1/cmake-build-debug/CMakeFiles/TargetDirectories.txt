@@ -1,0 +1,3 @@
+/Users/samuelthomas/Documents/University/2ndYr/ECM2433 The C Family/CA/cmake-build-debug/CMakeFiles/CA.dir
+/Users/samuelthomas/Documents/University/2ndYr/ECM2433 The C Family/CA/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/samuelthomas/Documents/University/2ndYr/ECM2433 The C Family/CA/cmake-build-debug/CMakeFiles/rebuild_cache.dir
