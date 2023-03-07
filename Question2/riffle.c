@@ -15,16 +15,38 @@ int main(){
     free(work);
     */
 
+
+    /*
     //int numbers[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
     //int pack_size = sizeof(numbers) / sizeof (numbers[0]);
-    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu" };
+    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                     "eta", "theta", "iota", "kappa", "lambda", "mu" };
     int pack_size = sizeof(greek) / sizeof (greek[0]);
     riffle(greek,pack_size,sizeof (greek[0]),5);
     int i;
     for (i = 0; i < pack_size; ++i) {
         printf("%s \n",greek[i]);
     }
-    return 0;
+    */
+
+
+    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon",
+                     "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu" };
+    int pack_size = sizeof(greek) / sizeof (greek[0]);
+    int good = check_shuffle(greek,pack_size,sizeof (greek[0]),cmp_string);
+    printf("%d \n",good);
+    return 1;
+
+
+
+    /*
+    int numbers[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    int pack_size = sizeof(numbers) / sizeof (numbers[0]);
+    int good = check_shuffle(numbers,pack_size,sizeof (numbers[0]),cmp_integer);
+    printf("%d",good);
+    return 1;
+     */
+
 }
 
 void riffle(void *L, int len, int size, int N){
@@ -126,10 +148,48 @@ void riffle_once(void *L, int len, int size, void *work){
 }
 
 
+
 int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
     // Call riffle and then make a copy of the previous L and then compare the two things.
     // We need 2 or 3 functions to compare int to int and string to string, maybe char to char.
     // The cmp is a function pointer to the compare function.
+    int i;
+    void *first;
+    void *second;
+    void *copy_L = malloc(len * size); // This is the copy of L
+    memcpy(copy_L,L,(size*len));
 
-    return 0;
+    riffle(L,len,size,1);
+    for (i = 0; i< len; i++) {
+        first = L + (i*size);
+        second = copy_L + (i*size);
+        if(cmp(first,second)==1){
+            free(copy_L);
+            return 0;
+        }
+    }
+    free(copy_L);
+    return 1;
+}
+
+int cmp_string(void *one, void *two){
+    char *one_string = *((char **)one);
+    char *two_string = *((char **)two);
+    printf("%s  vs %s \n",one_string, two_string);
+    if(strcmp(one_string,two_string)==0){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+int cmp_integer(void *one, void *two){
+    int one_int = *((int*) one);
+    int two_int = *((int*) two);
+    printf("%d  vs %d \n",one_int, two_int);
+    if(one_int==two_int){
+        return 1;
+    }else{
+        return 0;
+    }
 }
