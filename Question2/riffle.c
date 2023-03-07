@@ -29,6 +29,7 @@ int main(){
     }
      */
 
+    /*
     int numbers[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
     int pack_size = sizeof(numbers) / sizeof (numbers[0]);
     riffle(numbers,pack_size,sizeof (numbers[0]),1);
@@ -37,6 +38,7 @@ int main(){
         printf("%d \n",numbers[i]);
     }
     printf("%f \n",quality(numbers,pack_size));
+     */
 
     /*
     char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon",
@@ -55,6 +57,7 @@ int main(){
     printf("%d",good);
     return 1;
      */
+    printf("%f",average_quality(1000,2,30));
 
 }
 //////////////
@@ -144,7 +147,7 @@ int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
     void *copy_L = malloc(len * size); // This is the copy of L
     memcpy(copy_L,L,(size*len));
 
-    riffle(L,len,size,10);
+    riffle(L,len,size,1);
     for (i = 0; i< len; i++) {
         first = L + (i*size);
         second = copy_L + (i*size);
@@ -200,8 +203,21 @@ float quality(int *numbers, int len){
 
 float average_quality(int N, int shuffles, int trials){
     float numbers_average_quality = 0;
-
-
+    float quality_check;
+    int i;
+    int j;
+    int *numbers = (int *)malloc(N*sizeof(int));
+    for(i = 0; i<=N-1; i++)
+    {
+        numbers[i] = i;
+    }
+    for (j = 0; j < trials; ++j) {
+        riffle(numbers,N,sizeof (int),shuffles);
+        quality_check = quality(numbers,N);
+        numbers_average_quality += quality_check;
+    }
+    numbers_average_quality = numbers_average_quality/(float)N;
+    free(numbers);
     return numbers_average_quality;
 }
 
