@@ -1,10 +1,4 @@
 "/Users/samuelthomas/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/samuelthomas/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S "/Users/samuelthomas/Documents/University/2ndYr/ECM2433 The C Family/CA" -B "/Users/samuelthomas/Documents/University/2ndYr/ECM2433 The C Family/CA/cmake-build-debug"
--- The C compiler identification is AppleClang 14.0.0.14000029
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/samuelthomas/Documents/University/2ndYr/ECM2433 The C Family/CA/cmake-build-debug

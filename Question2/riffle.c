@@ -13,30 +13,39 @@ int main(){
         printf("%d \n",work[i]);
     }
     free(work);
-    */
+     */
+
+
 
 
     /*
-    //int numbers[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-    //int pack_size = sizeof(numbers) / sizeof (numbers[0]);
     char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
                      "eta", "theta", "iota", "kappa", "lambda", "mu" };
     int pack_size = sizeof(greek) / sizeof (greek[0]);
-    riffle(greek,pack_size,sizeof (greek[0]),5);
+    riffle(greek,pack_size,sizeof (greek[0]),1);
     int i;
     for (i = 0; i < pack_size; ++i) {
         printf("%s \n",greek[i]);
     }
-    */
+     */
 
+    int numbers[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    int pack_size = sizeof(numbers) / sizeof (numbers[0]);
+    riffle(numbers,pack_size,sizeof (numbers[0]),1);
+    int i;
+    for (i = 0; i < pack_size; ++i) {
+        printf("%d \n",numbers[i]);
+    }
+    printf("%f \n",quality(numbers,pack_size));
 
+    /*
     char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon",
                      "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu" };
     int pack_size = sizeof(greek) / sizeof (greek[0]);
     int good = check_shuffle(greek,pack_size,sizeof (greek[0]),cmp_string);
     printf("%d \n",good);
     return 1;
-
+    */
 
 
     /*
@@ -48,6 +57,7 @@ int main(){
      */
 
 }
+//////////////
 
 void riffle(void *L, int len, int size, int N){
     int i;
@@ -120,34 +130,9 @@ void riffle_once(void *L, int len, int size, void *work){
         }
         work+=size;
     }
-
-    /*
-    printf(" initial %p \n",L);
-    printf(" initial %p \n",work);
-    work = L;
-    L++;
-    printf(" increment %p \n",L);
-    printf(" set work to L[0] %p \n",work);
-    work = L;
-    L++;
-    printf(" increment %p \n",L);
-    printf(" set work to L[1] %p \n",work);
-    work--;
-    printf(" set work to L[0] %p \n",work);
-
-
-    printf(" 1 %p \n",L);
-    L++;
-    printf(" 2 %p \n",L);
-    L--;
-    printf(" 2 %p \n",L);
- */
-
-
-
 }
 
-
+//////////////
 
 int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
     // Call riffle and then make a copy of the previous L and then compare the two things.
@@ -159,7 +144,7 @@ int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
     void *copy_L = malloc(len * size); // This is the copy of L
     memcpy(copy_L,L,(size*len));
 
-    riffle(L,len,size,1);
+    riffle(L,len,size,10);
     for (i = 0; i< len; i++) {
         first = L + (i*size);
         second = copy_L + (i*size);
@@ -193,3 +178,51 @@ int cmp_integer(void *one, void *two){
         return 0;
     }
 }
+
+//////////////
+
+float quality(int *numbers, int len){
+    int greater_count = 0;
+    float numbers_quality;
+    int i;
+    int current;
+    int next;
+    for (i = 0; i < len-1; ++i) {
+        current = numbers[i];
+        next = numbers[i+1];
+        if(next>current){
+            greater_count+=1;
+        }
+    }
+    numbers_quality = (float)greater_count/(float)len;
+    return numbers_quality;
+}
+
+float average_quality(int N, int shuffles, int trials){
+    float numbers_average_quality = 0;
+
+
+    return numbers_average_quality;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
