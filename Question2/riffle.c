@@ -43,15 +43,36 @@ int main(){
     //printf("%f \n",quality(numbers,pack_size));
     */
 
-    /*
-    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon",
-                     "zeta", "eta", "theta", "iota", "kappa", "lambda", "mu" };
-    int pack_size = sizeof(greek) / sizeof (greek[0]);
-    int good = check_shuffle(greek,pack_size,sizeof (greek[0]),cmp_string);
-    printf("%d \n",good);
-    return 1;
-     */
 
+    /*
+    int pack_size;
+    char *L[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                     "eta", "theta", "iota", "kappa", "lambda", "mu"};
+    int len = sizeof(L) / sizeof (L[0]);
+    int size = sizeof (L[0]);
+    void *work = malloc(len * size);
+    riffle_once(L, len, size, work);
+    memcpy(L,work,(size*len));
+
+    int j;
+    for (j = 0; j < len; ++j) {
+        printf("%s ",L[j]);
+    }
+    free(work);
+     */
+    /*
+    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                     "eta", "theta", "iota", "kappa", "lambda", "mu"};
+    int greek_size = sizeof(greek) / sizeof (greek[0]);
+    void *work = malloc(greek_size * sizeof (greek[0]));
+    riffle_once(greek, greek_size, sizeof (greek[0]), work);
+    memcpy(greek,work,(sizeof (greek[0])*greek_size));
+    int j;
+    for (j = 0; j < greek_size; ++j) {
+        printf("%s ",greek[j]);
+    }
+    free(work);
+     */
     /*
     int numbers[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
     int pack_size = sizeof(numbers) / sizeof (numbers[0]);
@@ -69,7 +90,114 @@ int main(){
     //int i;
     //printf("%f \n",quality(numbers,pack_size));
     //printf("%f \n",average_quality(50,12,30));
-    quality_c();
+    //quality_c();
+    /*
+    int i;
+    int j;
+    int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                     12, 13, 14, 15, 16, 17, 18, 19, 20};
+    int numbers_size = sizeof(numbers) / sizeof (numbers[0]);
+    int *numbers_work = (int *)malloc(numbers_size * sizeof (int ));
+    printf("Riffle once Numbers: \n");
+    riffle_once(numbers, numbers_size, sizeof (int), numbers_work);
+    for (i = 0; i < numbers_size; ++i) {
+        printf(" %d |",numbers_work[i]);
+    }
+    free(numbers_work);
+    printf("\n");
+    printf("Riffle Numbers 5 times: \n");
+    riffle(numbers,numbers_size,sizeof (int),5);
+    for (i = 0; i < numbers_size; ++i) {
+        printf(" %d |",numbers[i]);
+    }
+    printf("\n");
+    int numbers_copy[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                          12, 13, 14, 15, 16, 17, 18, 19, 20};
+    int numbers_size_copy = sizeof(numbers_copy) / sizeof (numbers_copy[0]);
+    int check_shuffle_numbers = check_shuffle(numbers_copy,numbers_size_copy,sizeof (numbers_copy[0]),cmp_integer);
+    printf("Numbers shuffle check = %d\n",check_shuffle_numbers);
+    printf("\n");
+
+    //////////////////////////////////////
+
+    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                     "eta", "theta", "iota", "kappa", "lambda", "mu"};
+    int greek_size = sizeof(greek) / sizeof (greek[0]);
+    void *work = malloc(greek_size * sizeof (greek[0]));
+    printf("Riffle Greek numbers :\n");
+    riffle_once(greek, greek_size, sizeof (greek[0]), work);
+    memcpy(greek,work,(sizeof (greek[0])*greek_size));
+    for (j = 0; j < greek_size; ++j) {
+        printf(" %s |",greek[j]);
+    }
+    printf("\n");
+    free(work);
+    printf("Riffle Greek 5 times: \n");
+    riffle(greek,greek_size,sizeof (greek[0]),5);
+    for (j = 0; j < greek_size; ++j) {
+        printf(" %s |",greek[j]);
+    }
+    printf("\n");
+
+    char *greek_copy[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                          "eta", "theta", "iota", "kappa", "lambda", "mu" };
+    int greek_size_copy = sizeof(greek_copy) / sizeof (greek_copy[0]);
+    int check_shuffle_greek = check_shuffle(greek_copy,greek_size_copy,sizeof (greek_copy[0]),cmp_string);
+    printf("Greek shuffle check = %d\n",check_shuffle_greek);
+     */
+    int i;
+    int j;
+    int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                     12, 13, 14, 15, 16, 17, 18, 19, 20};
+    int numbers_size = sizeof(numbers) / sizeof (numbers[0]);
+    int *numbers_work = (int *)malloc(numbers_size * sizeof (int ));
+    printf("Riffle once Numbers: \n");
+    riffle_once(numbers, numbers_size, sizeof (int), numbers_work);
+    for (i = 0; i < numbers_size; ++i) {
+        printf(" %d |",numbers_work[i]);
+    }
+    free(numbers_work);
+    printf("\n");
+    printf("Riffle Numbers 5 times: \n");
+    riffle(numbers,numbers_size,sizeof (int),5);
+    for (i = 0; i < numbers_size; ++i) {
+        printf(" %d |",numbers[i]);
+    }
+    printf("\n");
+    int numbers_copy[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+                          12, 13, 14, 15, 16, 17, 18, 19, 20};
+    int numbers_size_copy = sizeof(numbers_copy) / sizeof (numbers_copy[0]);
+    int check_shuffle_numbers = check_shuffle(numbers_copy,numbers_size_copy,sizeof (numbers_copy[0]),cmp_integer);
+    printf("Numbers shuffle check = %d\n",check_shuffle_numbers);
+    printf("\n");
+
+    //////////////////////////////////////
+
+    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                     "eta", "theta", "iota", "kappa", "lambda", "mu"};
+    int greek_size = sizeof(greek) / sizeof (greek[0]);
+    void *work = malloc(greek_size * sizeof (greek[0]));
+    printf("Riffle Greek numbers :\n");
+    riffle_once(greek, greek_size, sizeof (greek[0]), work);
+    memcpy(greek,work,(sizeof (greek[0])*greek_size));
+    for (j = 0; j < greek_size; ++j) {
+        printf(" %s |",greek[j]);
+    }
+    printf("\n");
+    free(work);
+    printf("Riffle Greek 5 times: \n");
+    riffle(greek,greek_size,sizeof (greek[0]),5);
+    for (j = 0; j < greek_size; ++j) {
+        printf(" %s |",greek[j]);
+    }
+    printf("\n");
+
+    char *greek_copy[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
+                          "eta", "theta", "iota", "kappa", "lambda", "mu" };
+    int greek_size_copy = sizeof(greek_copy) / sizeof (greek_copy[0]);
+    int check_shuffle_greek = check_shuffle(greek_copy,greek_size_copy,sizeof (greek_copy[0]),cmp_string);
+    printf("Greek shuffle check = %d\n",check_shuffle_greek);
+
 
 }
 /////////////////////////////////
@@ -85,7 +213,6 @@ void riffle(void *L, int len, int size, int N){
 }
 
 void riffle_once(void *L, int len, int size, void *work){
-    int i;
     int j;
     int k;
     void *deck1_start = L + (size*(len/2));
@@ -202,9 +329,9 @@ int cmp_string(void *one, void *two){
         return 0; // the two strings are equal to each other
     }else{
         if(strcmp(one_string,two_string)>0){
-            return 1; // one is greater than two
+            return -1; // one is greater than two
         } else{
-            return -1; // two is greater than one
+            return 1; // two is greater than one
         }
     }
 }
@@ -216,9 +343,9 @@ int cmp_integer(void *one, void *two){
         return 0;
     }else{
         if(one_int>two_int){
-            return 1;
-        } else{
             return -1;
+        } else{
+            return 1;
         }
     }
 }
@@ -265,26 +392,6 @@ float average_quality(int N, int shuffles, int trials){
     free(numbers);
     return numbers_average_quality;
 }
-
-int quality_c(){
-    // find which average is the best using 1-15 shuffles.
-    float average;
-    int best_N;
-    float best_Average = 0;
-    int i;
-    for (i = 1; i < 16; ++i) {
-        average = average_quality(50,i,30);
-        printf("average = %f     best = %f \n",average,best_Average);
-        if(average>best_Average){
-            best_Average = average;
-            best_N = i;
-            printf("%d \n",best_N);
-        }
-    }
-    printf("%d",best_N);
-    return best_N;
-}
-
 
 /////////////////////////////////
 
