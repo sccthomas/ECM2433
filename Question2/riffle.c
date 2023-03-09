@@ -1,61 +1,6 @@
 #include "riffle.h"
 
-
-int main(){
-    int numbers[] = {0 ,1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,23, 24, 25, 26, 27, 28, 29,30, 31, 32, 33, 34, 35, 36, 37, 38 ,39 ,40, 41, 42, 43 ,44 ,45 ,46 ,47 ,48 ,49};
-    int i;
-    int j;
-    //int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12, 13, 14, 15, 16, 17, 18, 19, 20};
-    int numbers_size = sizeof(numbers) / sizeof (numbers[0]);
-    int *numbers_work = (int *)malloc(numbers_size * sizeof (int ));
-    printf("Riffle once Numbers: \n");
-    riffle_once(numbers, numbers_size, sizeof (int), numbers_work);
-    for (i = 0; i < numbers_size; ++i) {
-        printf(" %d |",numbers[i]);
-    }
-    free(numbers_work);
-
-    printf("\n");
-    printf("Riffle Numbers 5 times: \n");
-    riffle(numbers,numbers_size,sizeof (int),15);
-    for (i = 0; i < numbers_size; ++i) {
-        printf(" %d |",numbers[i]);
-    }
-    printf("\n");
-    /*
-    int check_shuffle_numbers = check_shuffle(numbers,numbers_size,sizeof (numbers[0]),cmp_integer);
-    printf("Numbers shuffle check = %d\n",check_shuffle_numbers);
-    printf("\n");
-
-    //////////////////////////////////////
-
-    char *greek[] = {"alpha", "beta", "gamma", "delta", "epsilon", "zeta",
-                     "eta", "theta", "iota", "kappa", "lambda", "mu"};
-    int greek_size = sizeof(greek) / sizeof (greek[0]);
-    void *work = malloc(greek_size * sizeof (greek[0]));
-    printf("Riffle Greek numbers :\n");
-    riffle_once(greek, greek_size, sizeof (greek[0]), work);
-    memcpy(greek,work,(sizeof (greek[0])*greek_size));
-    for (j = 0; j < greek_size; ++j) {
-        printf(" %s |",greek[j]);
-    }
-    printf("\n");
-    free(work);
-    printf("Riffle Greek 5 times: \n");
-    riffle(greek,greek_size,sizeof (greek[0]),15);
-    for (j = 0; j < greek_size; ++j) {
-        printf(" %s |",greek[j]);
-    }
-    printf("\n");
-    int check_shuffle_greek = check_shuffle(greek,greek_size,sizeof (greek[0]),cmp_string);
-    printf("Greek shuffle check = %d\n",check_shuffle_greek);
-    //printf("%f\n",average_quality(50,15,30));
-     */
-
-}
-
 /////////////////////////////////
-
 
 void riffle(void *L, int len, int size, int N){
     int i;
@@ -65,64 +10,6 @@ void riffle(void *L, int len, int size, int N){
     }
     free(work);
 }
-/*
-void riffle_once_(void *L, int len, int size, void *work){
-    int j;
-    int k;
-    void *work_start = work;
-    void *deck1_start = L + (size*(len/2));
-    void *deck2_start = L + (size*(len-1));
-    void *deck1_end = L;
-    void *deck2_end = deck1_start + size;
-    int random;
-    srand(time(0));
-    //printf("d1 = %p d1end %p\n",deck1_start,deck1_end);
-    //printf("d2 = %p d2end %p\n",deck2_start,deck2_end);
-    for (j = 0; j < len; ++j) {
-        random = rand() % 2;
-        if(random == 0){
-            //Take from deck 1
-            if (deck1_start == deck1_end){
-                // if deck 1 is almost empty e.i one left then we add the rest of deck 2 and break
-                memcpy(work, deck1_start, size);
-                work+=size;
-                for (k = 0; k < len-j; ++k) {
-                    memcpy(work, deck2_start, size);
-                    deck2_start-=size;
-                    work+=size;
-                }
-                break;
-            }else{
-                // deck 1 not almost empty
-                memcpy(work, deck1_start, size);
-            }
-
-            deck1_start-=size;
-        } else{
-            if (deck2_start == deck2_end){
-                // if deck 2 is almost empty e.i one left then we add the rest of deck 1 and break
-                memcpy(work, deck2_start, size);
-                work+=size;
-                for (k = 0; k < len-j; ++k) {
-                    memcpy(work, deck1_start, size);
-                    deck1_start-=size;
-                    work+=size;
-                }
-                break;
-            }else{
-                // deck 2 not almost empty
-                memcpy(work, deck2_start, size);
-            }
-            deck2_start-=size;
-        }
-        work+=size;
-    }
-    int i;
-    for (i = 0; i < len; ++i) {
-        memcpy(L+(i*size),work_start+(i*size),size);
-    }
-}
- */
 
 void riffle_once(void *L, int len, int size, void *work){
     int j;
@@ -176,6 +63,7 @@ void riffle_once(void *L, int len, int size, void *work){
         memcpy(L+(i*size),work_start+(i*size),size);
     }
 }
+
 /////////////////////////////////
 
 int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){

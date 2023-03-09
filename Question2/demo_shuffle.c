@@ -10,7 +10,7 @@ int main(){
     printf("Riffle once Numbers: \n");
     riffle_once(numbers, numbers_size, sizeof (int), numbers_work);
     for (i = 0; i < numbers_size; ++i) {
-        printf(" %d |",numbers_work[i]);
+        printf(" %d |",numbers[i]);
     }
     free(numbers_work);
     printf("\n");
