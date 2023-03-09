@@ -15,7 +15,7 @@ int main(){
     free(numbers_work);
     printf("\n");
     printf("Riffle Numbers 5 times: \n");
-    riffle(numbers,numbers_size,sizeof (int),5);
+    riffle(numbers,numbers_size,sizeof (int),15);
     for (i = 0; i < numbers_size; ++i) {
         printf(" %d |",numbers[i]);
     }
@@ -42,7 +42,7 @@ int main(){
     printf("\n");
     free(work);
     printf("Riffle Greek 5 times: \n");
-    riffle(greek,greek_size,sizeof (greek[0]),5);
+    riffle(greek,greek_size,sizeof (greek[0]),15);
     for (j = 0; j < greek_size; ++j) {
         printf(" %s |",greek[j]);
     }

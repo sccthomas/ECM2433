@@ -1,2 +1,2 @@
 #include "riffle.h"
-int quality_method();
+void quality_method();

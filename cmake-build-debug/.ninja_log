@@ -6,3 +6,6 @@
 1	33	1678205746481165370	CMakeFiles/CA.dir/Question1/piglatin.c.o	bfc744f0c8a4fd3e
 1	33	1678205746482318151	CMakeFiles/CA.dir/Question1/pig.c.o	f3e0849a03b19a24
 0	33	1678205746482849272	CMakeFiles/CA.dir/Question1/main.c.o	f1a31610a53217c8
+1	28	1678363207599801081	CMakeFiles/CA.dir/Question2/quality.c.o	1f243818c581cd4d
+1	28	1678363207600255126	CMakeFiles/CA.dir/Question2/demo_shuffle.c.o	21c9cf44d0a6949f
+0	30	1678363207602294723	CMakeFiles/CA.dir/Question2/riffle.c.o	b97354655edd4b0a

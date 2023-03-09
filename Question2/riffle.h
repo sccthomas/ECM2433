@@ -10,7 +10,6 @@ int cmp_string(void *one, void *two);
 int cmp_integer(void *one, void *two);
 float quality(int *numbers, int len);
 float average_quality(int N, int shuffles, int trials);
-int quality_c();
 int arrays_equal(void *L, void *cL, int len, int size, int (*cmp)(void *, void *));
 
 
