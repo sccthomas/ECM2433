@@ -54,7 +54,7 @@ int main(){
     int check_shuffle_greek = check_shuffle(greek_copy,greek_size_copy,sizeof (greek_copy[0]),cmp_string);
     printf("Greek shuffle check = %d\n",check_shuffle_greek);
 
-
+    return 0;
 }
 
 

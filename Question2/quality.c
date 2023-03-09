@@ -2,7 +2,7 @@
 
 int main(){
     quality_method();
-    return 1;
+    return 0;
 }
 
 void quality_method(){

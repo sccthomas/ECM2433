@@ -1,11 +1,11 @@
 # ninja log v5
-0	40	1678313331102059727	build.ninja	4adbc76ee2040068
+0	40	1678384185547492277	build.ninja	4adbc76ee2040068
 25	55	1677862479745118952	CA	4c6ae4ddfdcc3c33
 1	32	1678205746481146704	CMakeFiles/CA.dir/Question1/test_pig.c.o	7259a72bfac4f22a
 1	33	1678205746481143454	CMakeFiles/CA.dir/Question2/riffle_once.c.o	8cf876f2fddc6045
 1	33	1678205746481165370	CMakeFiles/CA.dir/Question1/piglatin.c.o	bfc744f0c8a4fd3e
-1	33	1678205746482318151	CMakeFiles/CA.dir/Question1/pig.c.o	f3e0849a03b19a24
-0	33	1678205746482849272	CMakeFiles/CA.dir/Question1/main.c.o	f1a31610a53217c8
 1	28	1678363207599801081	CMakeFiles/CA.dir/Question2/quality.c.o	1f243818c581cd4d
-1	28	1678363207600255126	CMakeFiles/CA.dir/Question2/demo_shuffle.c.o	21c9cf44d0a6949f
+1	33	1678205746482318151	CMakeFiles/CA.dir/Question1/pig.c.o	f3e0849a03b19a24
 0	30	1678363207602294723	CMakeFiles/CA.dir/Question2/riffle.c.o	b97354655edd4b0a
+0	33	1678205746482849272	CMakeFiles/CA.dir/Question1/main.c.o	f1a31610a53217c8
+1	28	1678363207600255126	CMakeFiles/CA.dir/Question2/demo_shuffle.c.o	21c9cf44d0a6949f
