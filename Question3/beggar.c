@@ -2,117 +2,137 @@
 
 
 
-
 int main(){
-    int deck[52];
+    int deck[52] ={2,3,4,5,6,7,8,9,10,11,12,13,14,
+                   2,3,4,5,6,7,8,9,10,11,12,13,14,
+                   2,3,4,5,6,7,8,9,10,11,12,13,14,
+                   2,3,4,5,6,7,8,9,10,11,12,13,14};
     int i;
-    for (i = 0; i < 52; i++) {
-        deck[i] = i + 1;
-    }
-    beggar(5, deck, 0);
+    int card_num = 0;
+    beggar(2, deck, 0);
     return 0;
 }
 
-void round_robin_cards(int *deck, int **decks, int Nplayers, int deck_length){
+void round_robin_cards(int *deck, PLAYER *players, int Nplayers, int deck_length){
     int i, j = 0, k = 0;
     int count = 0;
-    int cards_to_player = deck_length/Nplayers;
-    //printf("cards to player %d\n",cards_to_player);
     int extra = deck_length%Nplayers;
     //printf("extra = %d \n", extra);
     while(count<deck_length-extra) {
         for (i = 0;  i< Nplayers; i++) {
-            decks[i][j] = deck[count];
+            enqueue(&players[i].hand,deck[count],&players[i].hand_size);
             count++;
         }
         j+=1;
     }
-    //printf("count = %d \n", count);
     while(count<deck_length) {
-        decks[k][j] = deck[count];
-        //printf("decks = %d \n", decks[i][j]);
+        enqueue(&players[k].hand,deck[count],&players[k].hand_size);
         count++;
         k+=1;
     }
-
 }
 
-
-
 int beggar(int Nplayers, int *deck, int talkative){
-    // Make all the players and give them all cards, shuffle the cards once you can give them all cards
-    int **decks = (int **) malloc(sizeof (int *) * Nplayers); //2D array containing Nplayers hands.
-    int i;
+    PLAYER players[Nplayers];
+    QUEUE pile; //The centre pile
+    pile.front= NULL;
+    pile.rear = NULL;
     int deck_size = 52;
-    int decks_size = deck_size/Nplayers + 1;
+    int current_player = 0;
+    int i;
     for (i = 0; i < Nplayers; ++i) {
-        decks[i] = (int*) malloc(sizeof (int)*(decks_size));
+        PLAYER *player = &players[i];
+        player->id = i;
+        player->hand.front = NULL;
+        player->hand.rear = NULL;
+        player->hand_size = 0;
     }
-    round_robin_cards(deck,decks,Nplayers,deck_size); // Distribute the cards;
-    for (int k = 0; k < Nplayers; ++k) {
-        for (int l = 0; l < decks_size; ++l) {
-            printf("%d ",decks[k][l]);
+    round_robin_cards(deck,players,Nplayers,deck_size);
+    //dequeue(&players[0].hand,&players[0].hand_size);
+    for (i = 0; i < Nplayers; ++i) {
+        print_hand( &players[i].hand);
+    }
+    int won = finished(players,Nplayers);
+    while(won == 0){
+        won = finished(players,Nplayers);
+        int current_player_card = dequeue(&players[current_player].hand,&players[current_player].hand_size);
+        if(current_player_card > 10){
+            //penalty stuff
         }
-        printf("\n");
+
+    }
+    return 0;
+}
+
+int take_turn(QUEUE *player, QUEUE *pile){
+    QUEUE_ITEM *player_card = player->front;
+    int player_card_value = player_card->data;
+    // 11 = Jack, 12 = Queen, 13 = King and 14 = Ace
+    // 4 cards for an Ace, 3 for a King, 2 cards for a Queen and 1 for a Jack.
+    if(player_card_value > 10){ // Penalty card
+        if(player_card_value == 11){
+            return 4;
+        }
+    }
+    return 0;
+}
+
+int finished(PLAYER *players, int Nplayers){
+    int i;
+    for (i = 0; i < Nplayers; ++i) {
+        if(players->hand_size==52){
+            return 1;
+        }
     }
     return 0;
 }
 
 
+//////////////// Queue stuff ////////////////
 
-//int finished(int *players, int Nplayers){}
-
-
-
-
-
-
-//int main()
-//{
-//    STACK *root = NULL;
-//    STACK *new_Node = newNode('Q');
-//    STACK *new_Node_2 = newNode('C');
-//    push(new_Node,&root);
-//    push(new_Node_2,&root);
-//    pop(&root);
-//
-//}
-
-QUEUE *newNode(char c)
-{
-    QUEUE *nNode = malloc(sizeof(QUEUE));
-    nNode->data = c;
-    return nNode;
-}
-
-void printStack(QUEUE *node)
-{
-    QUEUE *next = node->nextNode;
-    printf("%c to ",node->data);
-    if(next != NULL)
-    {
-        printf("%c\n",next->data);
-        printStack(next);
-    } else {
-        printf("NULL\n");
+void print_hand(QUEUE *deck){
+    QUEUE_ITEM *card = deck->front;
+    while(card!=NULL){
+        printf("%d ",card->data);
+        card = card->nextNode;
     }
+    printf("\n");
 }
 
-void enqueue(QUEUE *Node, QUEUE **End) {
-    Node->nextNode = *End;
-    *End = Node;
-}
-
-char dequeue(QUEUE **Start){
-    char data;
-    QUEUE * next_node = NULL;
-    if(*Start == NULL){
-        return -1;
+void enqueue(QUEUE *deck, int card, int *hand_size) {
+    QUEUE_ITEM* newNode;
+    if (!(newNode = (QUEUE_ITEM*)malloc(sizeof(QUEUE_ITEM)))) {
+        printf("malloc failed\n");
+        exit(1);
     }
-    next_node = (*Start)->nextNode;
-    data = (*Start)->data;
-    free(*Start);
-    *Start = next_node;
-    return data;
+    newNode->data = card;
+    newNode->nextNode = NULL;
+    if(deck->front == NULL){
+        deck->front = newNode;
+        deck->rear = newNode;
+    }else{
+        deck->rear->nextNode = newNode;
+        deck->rear = newNode;
+    }
+    (*hand_size)++;
+}
+
+int dequeue(QUEUE *deck, int *hand_size){
+    if(deck->front==NULL){
+        //Deck is empty
+        exit(1);
+    }
+    QUEUE_ITEM *removed = deck->front;
+    int card = removed->data;
+    if(deck->front==deck->rear){
+        //empty now
+        deck->front = NULL;
+        deck->rear = NULL;
+    }else{
+        deck->front = deck->front->nextNode;
+    }
+    free(removed);
+    (*hand_size)--;
+    return card;
 }
 

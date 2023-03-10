@@ -1,21 +1,29 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct queueStruct
-{
-    char data;
-    struct queueStruct *nextNode;
+typedef struct queueItem {
+    int data;
+    struct queueItem *nextNode;
+}QUEUE_ITEM;
+
+typedef struct Queue {
+    struct queueItem* front;
+    struct queueItem* rear;
 }QUEUE;
 
+typedef struct Player {
+    int id;
+    struct Queue hand;
+    int hand_size;
+}PLAYER;
+
+void enqueue(QUEUE *deck, int card, int *hand_size);
+int dequeue(QUEUE *deck, int *hand_size);
+void print_hand(QUEUE *deck);
+
+
 int beggar(int Nplayers, int *deck, int talkative);
-void round_robin_cards(int *deck, int **decks, int players,int deck_length);
+int finished(PLAYER *players, int Nplayers);
+int take_turn(QUEUE *player, QUEUE *pile);
 
-//int finished(int *players, int Nplayers);
-
-
-
-
-QUEUE *newNode (char);
-void printStack(QUEUE*);
-void enqueue(QUEUE*,QUEUE**);
-char dequeue(QUEUE **);
+void round_robin_cards(int *deck, PLAYER *players, int Nplayers, int deck_length);
