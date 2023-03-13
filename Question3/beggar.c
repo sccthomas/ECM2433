@@ -8,8 +8,6 @@ int main(){
                     4 , 5 , 12 , 13 , 14 , 2 , 6 , 3 , 4 , 7 , 5 , 6 ,
                     7 , 8 , 9 , 8 , 9 , 10 , 11 , 10 , 11 , 12 , 13 , 12 ,
                     13 , 14 , 14 , 2 };
-    int i;
-    int card_num = 0;
     int turns = beggar(4, deck, 1);
     printf("turns = %d",turns);
     return 0;
@@ -22,13 +20,15 @@ void round_robin_cards(int *deck, PLAYER *players, int Nplayers, int deck_length
     //printf("extra = %d \n", extra);
     while(count<deck_length-extra) {
         for (i = 0;  i< Nplayers; i++) {
-            enqueue(players[i].hand,deck[count],&players[i].hand->hand_size);
+            PLAYER *player = &players[i];
+            enqueue(player->hand,deck[count],&(player->hand->hand_size));
             count++;
         }
         j+=1;
     }
     while(count<deck_length) {
-        enqueue(players[k].hand,deck[count],&players[k].hand->hand_size);
+        PLAYER *player = &players[i];
+        enqueue(player->hand,deck[count],&(player->hand->hand_size));
         count++;
         k+=1;
     }
@@ -37,9 +37,9 @@ void round_robin_cards(int *deck, PLAYER *players, int Nplayers, int deck_length
 int beggar(int Nplayers, int *deck, int talkative) {
     PLAYER players[Nplayers];
     QUEUE *pile = initializeQueue();
-
     int deck_size = 52;
     int current_player = 0;
+    int previous_player_index = Nplayers-1;
     int i, j, turns = 1;
     for (i = 0; i < Nplayers; ++i) {
         PLAYER *player = &players[i];
@@ -65,31 +65,22 @@ int beggar(int Nplayers, int *deck, int talkative) {
             continue;
         }
         QUEUE *reward = take_turn(player_turn->hand, pile);
-
-//        printf("Turn %d\n",turns);
-//        printf("Pile: ");
-//        print_hand(pile);
-
-
         if (reward != NULL) { // the pile top is penalty card so the previous player has to pay
-            int previous_player_index;
-            if(current_player == 0){
-                previous_player_index = Nplayers-1;
-            }else{
-                previous_player_index = current_player-1;
-            }
             PLAYER *previous_player = &players[previous_player_index];
             while(reward->front!=NULL) { //put reward on the players deck
                 int reward_card = dequeue(reward, &(reward->hand_size));
                 enqueue(previous_player->hand,reward_card,&(previous_player->hand->hand_size));
             }
         }
+        previous_player_index = current_player;
         current_player = (current_player + 1) % Nplayers;
         turns += 1;
+        if(turns>4999){
+            break;
+        }
     }
     return turns;
 }
-
 
 int is_penalty_card(int card){
     int cost = 0;
@@ -114,7 +105,6 @@ int is_penalty_card(int card){
     }
     return cost;
 }
-
 
 QUEUE* take_turn(QUEUE *player, QUEUE *pile){
     int current_player_card;
@@ -155,13 +145,13 @@ QUEUE* take_turn(QUEUE *player, QUEUE *pile){
 int finished(PLAYER *players, int Nplayers){
     int i;
     for (i = 0; i < Nplayers; ++i) {
-        if(players->hand->hand_size==52){
+        PLAYER *player = &players[i];
+        if(player->hand->hand_size==52){
             return 1;
         }
     }
     return 0;
 }
-
 
 //////////////// Queue stuff ////////////////
 
@@ -171,8 +161,9 @@ void print_hand(QUEUE *deck){
         printf("%d, ", card->data);
         card = card->nextNode;
     }
+    printf("    Hand size = %d",deck->hand_size);
     printf("\n");
-    //printf("\n  Hand size = %d\n",deck->hand_size);
+
 }
 
 void print_decks(int Nplayers, PLAYER *players, int current_player){
