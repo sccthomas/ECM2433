@@ -9,21 +9,23 @@ typedef struct queueItem {
 typedef struct Queue {
     struct queueItem* front;
     struct queueItem* rear;
+    int hand_size;
 }QUEUE;
 
 typedef struct Player {
     int id;
-    struct Queue hand;
-    int hand_size;
+    struct Queue *hand;
 }PLAYER;
 
+QUEUE *initializeQueue();
 void enqueue(QUEUE *deck, int card, int *hand_size);
 int dequeue(QUEUE *deck, int *hand_size);
 void print_hand(QUEUE *deck);
-
+int is_penalty_card(int card);
+void print_decks(int Nplayers, PLAYER *players, int current_player);
 
 int beggar(int Nplayers, int *deck, int talkative);
 int finished(PLAYER *players, int Nplayers);
-int take_turn(QUEUE *player, QUEUE *pile);
+QUEUE* take_turn(QUEUE *player, QUEUE *pile);
 
 void round_robin_cards(int *deck, PLAYER *players, int Nplayers, int deck_length);
