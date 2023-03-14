@@ -1,19 +1,19 @@
-Average Quality with 1 shuffles = 0.836735
-Average Quality with 2 shuffles = 0.714286
-Average Quality with 3 shuffles = 0.591837
-Average Quality with 4 shuffles = 0.530612
-Average Quality with 5 shuffles = 0.510204
-Average Quality with 6 shuffles = 0.489796
-Average Quality with 7 shuffles = 0.489796
-Average Quality with 8 shuffles = 0.530612
-Average Quality with 9 shuffles = 0.530612
-Average Quality with 10 shuffles = 0.510204
-Average Quality with 11 shuffles = 0.551021
-Average Quality with 12 shuffles = 0.510204
-Average Quality with 13 shuffles = 0.489796
-Average Quality with 14 shuffles = 0.448979
-Average Quality with 15 shuffles = 0.489796
-Average over shuffles 1-15 = 0.548299
+Average Quality with 1 shuffles = 0.761905
+Average Quality with 2 shuffles = 0.644898
+Average Quality with 3 shuffles = 0.575510
+Average Quality with 4 shuffles = 0.555782
+Average Quality with 5 shuffles = 0.526531
+Average Quality with 6 shuffles = 0.502041
+Average Quality with 7 shuffles = 0.502721
+Average Quality with 8 shuffles = 0.509524
+Average Quality with 9 shuffles = 0.493878
+Average Quality with 10 shuffles = 0.486394
+Average Quality with 11 shuffles = 0.507483
+Average Quality with 12 shuffles = 0.505442
+Average Quality with 13 shuffles = 0.497959
+Average Quality with 14 shuffles = 0.506803
+Average Quality with 15 shuffles = 0.496599
+Average over shuffles 1-15 = 0.538231
 
 0.5 is the value which has been provided as a good quality, so this is where my answer is based off.
-From this output I think that N should be between 5 and 7 as these are the values which are closest to 0.5.
+From this output I think that N should be either 6 or 7 as these are the values which are closest to 0.5.

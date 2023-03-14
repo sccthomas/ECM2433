@@ -1,6 +1,11 @@
 #include "test_pig.h"
 
+/**
+ * This is a program to test that the pig.c program can correctly translate the words listed in the CA specification
+ * @return
+ */
 int main() {
+    //We print each word with its translated counterpart and then free the word
     char test1[30] = "happy";
     char *test1_r = pig(test1);
     printf("%s => %s \n", test1, test1_r);
