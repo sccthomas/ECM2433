@@ -1,4 +1,4 @@
-#include "pig_header.h"
+#include "pig.h"
 
 char *pig(char *word){
     int strLen = strlen(word);

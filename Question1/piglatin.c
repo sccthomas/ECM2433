@@ -1,4 +1,4 @@
-#include "piglatin_header.h"
+#include "piglatin.h"
 
 int main(){
     char sentence[100000];

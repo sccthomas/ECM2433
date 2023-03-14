@@ -1,4 +1,4 @@
-#include "test_pig_header.h"
+#include "test_pig.h"
 
 int main() {
     char test1[30] = "happy";

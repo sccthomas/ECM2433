@@ -94,6 +94,24 @@ build CMakeFiles/CA.dir/Question3/beggar.c.o: C_COMPILER__CA_Debug /Users/samuel
   OBJECT_DIR = CMakeFiles/CA.dir
   OBJECT_FILE_DIR = CMakeFiles/CA.dir/Question3
 
+build CMakeFiles/CA.dir/Question3/byn.c.o: C_COMPILER__CA_Debug /Users/samuelthomas/Documents/University/2ndYr/ECM2433$ The$ C$ Family/CA/Question3/byn.c || cmake_object_order_depends_target_CA
+  DEP_FILE = CMakeFiles/CA.dir/Question3/byn.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -fcolor-diagnostics -std=gnu11
+  OBJECT_DIR = CMakeFiles/CA.dir
+  OBJECT_FILE_DIR = CMakeFiles/CA.dir/Question3
+
+build CMakeFiles/CA.dir/Question3/shuffle.c.o: C_COMPILER__CA_Debug /Users/samuelthomas/Documents/University/2ndYr/ECM2433$ The$ C$ Family/CA/Question3/shuffle.c || cmake_object_order_depends_target_CA
+  DEP_FILE = CMakeFiles/CA.dir/Question3/shuffle.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -fcolor-diagnostics -std=gnu11
+  OBJECT_DIR = CMakeFiles/CA.dir
+  OBJECT_FILE_DIR = CMakeFiles/CA.dir/Question3
+
+build CMakeFiles/CA.dir/Question3/single.c.o: C_COMPILER__CA_Debug /Users/samuelthomas/Documents/University/2ndYr/ECM2433$ The$ C$ Family/CA/Question3/single.c || cmake_object_order_depends_target_CA
+  DEP_FILE = CMakeFiles/CA.dir/Question3/single.c.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -fcolor-diagnostics -std=gnu11
+  OBJECT_DIR = CMakeFiles/CA.dir
+  OBJECT_FILE_DIR = CMakeFiles/CA.dir/Question3
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CA
@@ -102,7 +120,7 @@ build CMakeFiles/CA.dir/Question3/beggar.c.o: C_COMPILER__CA_Debug /Users/samuel
 #############################################
 # Link the executable CA
 
-build CA: C_EXECUTABLE_LINKER__CA_Debug CMakeFiles/CA.dir/Question1/main.c.o CMakeFiles/CA.dir/Question1/pig.c.o CMakeFiles/CA.dir/Question1/test_pig.c.o CMakeFiles/CA.dir/Question1/piglatin.c.o CMakeFiles/CA.dir/Question2/riffle.c.o CMakeFiles/CA.dir/Question2/demo_shuffle.c.o CMakeFiles/CA.dir/Question2/quality.c.o CMakeFiles/CA.dir/Question3/beggar.c.o
+build CA: C_EXECUTABLE_LINKER__CA_Debug CMakeFiles/CA.dir/Question1/main.c.o CMakeFiles/CA.dir/Question1/pig.c.o CMakeFiles/CA.dir/Question1/test_pig.c.o CMakeFiles/CA.dir/Question1/piglatin.c.o CMakeFiles/CA.dir/Question2/riffle.c.o CMakeFiles/CA.dir/Question2/demo_shuffle.c.o CMakeFiles/CA.dir/Question2/quality.c.o CMakeFiles/CA.dir/Question3/beggar.c.o CMakeFiles/CA.dir/Question3/byn.c.o CMakeFiles/CA.dir/Question3/shuffle.c.o CMakeFiles/CA.dir/Question3/single.c.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk
   OBJECT_DIR = CMakeFiles/CA.dir
   POST_BUILD = :

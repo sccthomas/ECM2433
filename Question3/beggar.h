@@ -20,6 +20,7 @@ typedef struct Player {
 QUEUE *initializeQueue();
 void enqueue(QUEUE *deck, int card, int *hand_size);
 int dequeue(QUEUE *deck, int *hand_size);
+void freeDeck(QUEUE *deck);
 void print_hand(QUEUE *deck);
 int is_penalty_card(int card);
 void print_decks(int Nplayers, PLAYER *players, int current_player);
