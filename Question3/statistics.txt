@@ -1,0 +1,45 @@
+[scct201@emps-ugcs2 Question3]$ byn 10 100
+Game with 2 Players Stats:
+Shortest = 31
+Longest = 924
+Average = 180.149994
+
+Game with 3 Players Stats:
+Shortest = 38
+Longest = 1173
+Average = 357.220001
+
+Game with 4 Players Stats:
+Shortest = 58
+Longest = 1581
+Average = 473.100006
+
+Game with 5 Players Stats:
+Shortest = 130
+Longest = 2994
+Average = 538.869995
+
+Game with 6 Players Stats:
+Shortest = 94
+Longest = 2504
+Average = 697.650024
+
+Game with 7 Players Stats:
+Shortest = 186
+Longest = 2231
+Average = 779.250000
+
+Game with 8 Players Stats:
+Shortest = 132
+Longest = 4488
+Average = 984.309998
+
+Game with 9 Players Stats:
+Shortest = 162
+Longest = 3082
+Average = 1046.719971
+
+Game with 10 Players Stats:
+Shortest = 200
+Longest = 4553
+Average = 1170.890015

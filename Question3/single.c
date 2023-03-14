@@ -16,6 +16,9 @@ int main(int argc, char **argv){
                     2 , 3 , 4 , 5 , 6 , 7 , 8, 9 , 10 , 11 , 12 , 13 , 14 ,
                     2 , 3 , 4 , 5 , 6 , 7 , 8, 9 , 10 , 11 , 12 , 13 , 14};
     int Nplayers = atoi(argv[1]);
+    if(Nplayers == 1){
+        return 1;
+    }
     shuffle(deck, 52, -1);
     int turns = beggar(Nplayers, deck, 1);
     printf("turns = %d\n",turns);

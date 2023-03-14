@@ -14,6 +14,9 @@ int main(int argc, char **argv){
     }
     int Nplayers = atoi(argv[1]);
     int trails = atoi(argv[2]);
+    if(Nplayers == 1 || trails == 0){
+        return 1;
+    }
     int i;
     for (i = 2; i <= Nplayers; ++i) {
         STATS *stats = statistics(i,trails);
