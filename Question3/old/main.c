@@ -1,4 +1,4 @@
-#include "beggar.h"
+#include "../beggar.h"
 
 
 
@@ -14,7 +14,7 @@ int main(int argc, char **argv){
     //int Nplayers = atoi(argv[1]);
     int turns = beggar(5, deck, 0);
     printf("turns = %d\n",turns);
-    return 1;
+    return 0;
 }
 
 void round_robin_cards(int *deck, PLAYER *players, int Nplayers, int deck_length){
