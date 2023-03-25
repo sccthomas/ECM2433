@@ -1,11 +1,8 @@
 CC = gcc
 
-#demo_shuffle: demo_shuffle.o shuffle.o
-#	gcc -o demo_shuffle demo_shuffle.o shuffle.o  -lgsl -lgslcblas -lm
 
+single: single.o beggar.o shuffle.o
+	gcc single.o shuffle.o beggar.o -lgsl -lgslcblas -o single -lm
 
-single:
-	gcc single.c shuffle.c beggar.c -lgsl -lgslcblas -o single -lm
-
-byn:
-	gcc byn.c shuffle.c beggar.c -lgsl -lgslcblas -o byn -lm
+byn: byn.o shuffle.o beggar.o
+	gcc byn.o shuffle.o beggar.o -lgsl -lgslcblas -o byn -lm

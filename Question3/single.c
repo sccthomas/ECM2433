@@ -9,6 +9,8 @@
  */
 int main(int argc, char **argv){
     if(argc==1){
+        fprintf(stderr, "No players inputted\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         return 1;
     }
     int deck[52] ={ 2 , 3 , 4 , 5 , 6 , 7 , 8, 9 , 10 , 11 , 12 , 13 , 14 ,

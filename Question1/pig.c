@@ -12,6 +12,8 @@ char *pig(char *word){
     char *copy = malloc(sizeof(char) * (strlen(word)+10)); // Make a copy of the inputted word
     // Check that the malloc occurred correctly
     if (copy == NULL) {
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     char *end; // The end section of the word
