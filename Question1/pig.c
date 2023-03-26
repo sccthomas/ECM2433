@@ -16,7 +16,6 @@ char *pig(char *word){
         fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
-    char *end; // The end section of the word
     int i = 0;
     int j;
     int k;
@@ -26,22 +25,19 @@ char *pig(char *word){
     }
     // If the first letter is Y then we add ay to the end
     if (word[0] =='y'){
-        end = "ay";
         word++;
-        start[0] = 'y';
         // Combining the sections of the final word together word+start+end
         strcat(copy,word);
-        strcat(copy,start);
-        strcat(copy,end);
+        strcat(copy,"y");
+        strcat(copy,"ay");
         // Return the copy which contains the new word
         return copy;
     }
     // If the word begins with a vowel then we add a way to the end of the final word
     if (word[0] == 'a' || word[0] == 'e' || word[0] == 'i' || word[0] == 'o' || word[0] == 'u'){
-        end = "way";
         // Combining the sections of the final word together word+end
         strcat(copy,word);
-        strcat(copy,end);
+        strcat(copy,"way");
         // Return the copy which contains the new word
         return copy;
     }else {
@@ -54,7 +50,6 @@ char *pig(char *word){
             start[i] = word[i];
             i++;
         }
-        end = "ay";
         // Move the word pointer to the new start section of the new word
         for (j = 0; j < i; ++j) {
             word++;
@@ -62,7 +57,7 @@ char *pig(char *word){
         // Combining the sections of the final word together word+start+end
         strcat(copy,word);
         strcat(copy,start);
-        strcat(copy,end);
+        strcat(copy,"ay");
         // Return the copy which contains the new word
         return copy;
     }
