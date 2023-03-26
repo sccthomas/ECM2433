@@ -8,9 +8,15 @@
 int main(){
     char sentence[100000];
     const char s[2] = " ";
-    printf("Enter your sentence: ");
     // User inputs the sentence
-    while(scanf("%[^\n]s",sentence)){
+    while(1) {  // Loop indefinitely until user breaks out
+        printf("Enter your sentence: ");
+        if (!fgets(sentence, sizeof(sentence), stdin)) {
+            break; // Break out of loop if input is empty
+        }
+        if (sentence[0] == '\n') {
+            break;
+        }
         char *word = strtok(sentence, s); // Get the nth word from the sentence
         // While there is a word present convert to pig latin
         while(word!=NULL){
