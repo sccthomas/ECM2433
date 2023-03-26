@@ -67,21 +67,21 @@ int beggar(int Nplayers, int *deck, int talkative) {
         }
         if(player_turn->hand->front == NULL){ // If the player has no cards then skip and increment the current player
             current_player = (current_player + 1) % Nplayers;
-            turns += 1;
             continue;
-        }
-        QUEUE *reward = take_turn(player_turn->hand, pile); // If the player can play then take a turn
-        if (reward != NULL) { // The pile top is penalty card so the previous player has to pay
-            PLAYER *previous_player = &players[previous_player_index];
-            while(reward->front!=NULL) { // Put reward on the players deck
-                int reward_card = dequeue(reward, &(reward->hand_size));
-                enqueue(previous_player->hand,reward_card,&(previous_player->hand->hand_size));
+        }else{
+            turns += 1;
+            QUEUE *reward = take_turn(player_turn->hand, pile); // If the player can play then take a turn
+            if (reward != NULL) { // The pile top is penalty card so the previous player has to pay
+                PLAYER *previous_player = &players[previous_player_index];
+                while(reward->front!=NULL) { // Put reward on the players deck
+                    int reward_card = dequeue(reward, &(reward->hand_size));
+                    enqueue(previous_player->hand,reward_card,&(previous_player->hand->hand_size));
+                }
+                free(reward);
             }
-            free(reward);
+            previous_player_index = current_player; // Current player has played so make then the previous player
+            current_player = (current_player + 1) % Nplayers; // Increment the current player
         }
-        previous_player_index = current_player; // Current player has played so make then the previous player
-        current_player = (current_player + 1) % Nplayers; // Increment the current player
-        turns += 1;
         if(turns>4999){
             break;
         }
@@ -231,7 +231,8 @@ void print_decks(int Nplayers, PLAYER *players, int current_player){
 void enqueue(QUEUE *deck, int card, int *hand_size) {
     QUEUE_ITEM* newNode; // Make a new queue item
     if (!(newNode = (QUEUE_ITEM*)malloc(sizeof(QUEUE_ITEM)))) {
-        printf("malloc failed\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     newNode->data = card;
@@ -276,7 +277,8 @@ int dequeue(QUEUE *deck, int *hand_size){
 QUEUE* initializeQueue() {
     QUEUE *deck = (QUEUE *)malloc(sizeof(QUEUE));
     if(deck == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     deck->front = NULL;

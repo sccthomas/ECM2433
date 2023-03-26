@@ -17,7 +17,8 @@ int main(){
     int *numbers_work = (int *)malloc(numbers_size * sizeof (int ));
     // Check if the malloc was successful
     if(numbers_work == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     printf("Riffle once Numbers: \n");
@@ -50,7 +51,8 @@ int main(){
     void *work = malloc(greek_size * sizeof (greek[0]));
     // Check if the malloc was successful
     if(work == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     printf("Riffle Greek numbers :\n");

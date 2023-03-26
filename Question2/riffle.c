@@ -14,7 +14,8 @@ void riffle(void *L, int len, int size, int N){
     void *work = malloc(len * size);
     // Check if the malloc was successful
     if(work == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     // start the shuffle
@@ -98,7 +99,8 @@ int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
     void *second;
     void *copy_L = malloc(len * size); // This is the copy of L before shuffle
     if(copy_L == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     memcpy(copy_L,L,(size*len));
@@ -107,7 +109,8 @@ int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
     // Checking if all items in the original are in the shuffled array
     void *copy_of_shuffle = malloc(len * size);
     if(copy_of_shuffle == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     memcpy(copy_of_shuffle, L, (size*len));
@@ -115,7 +118,8 @@ int check_shuffle(void *L, int len, int size, int (*cmp)(void *, void *)){
 
     void *copy_L_sort = malloc(len * size);
     if(copy_L_sort == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     memcpy(copy_L_sort, copy_L, (size*len));

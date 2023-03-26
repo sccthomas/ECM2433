@@ -10,6 +10,8 @@
  */
 int main(int argc, char **argv){
     if(argc==1){
+        fprintf(stderr, "No args inputted\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         return 1;
     }
     int Nplayers = atoi(argv[1]);
@@ -40,7 +42,8 @@ int main(int argc, char **argv){
 STATS* statistics(int Nplayers, int games){
     STATS *game_stats = (STATS *)malloc(sizeof(STATS));
     if(game_stats == NULL){
-        printf("Insufficient memory\n");
+        fprintf(stderr, "Malloc Failed\n");
+        fprintf(stderr, "error %d: %s\n", errno, strerror(errno));
         exit(-1);
     }
     game_stats->longest=0; // Set to 0 so it can increase
